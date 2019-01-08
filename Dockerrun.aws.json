@@ -1,0 +1,39 @@
+{
+ "AWSEBDockerrunVersion": 2,
+ "containerDefinitions": [
+  {
+	"name": "client",
+	"image": "laposmokus/multi-client",
+	"hostname": "client",
+	"essential": false
+  },
+  {
+	"name": "server",
+	"image": "laposmokus/multi-server",
+	"hostname": "api",
+	"essential": false
+  },
+  {
+	"name": "worker",
+	"image": "laposmokus/multi-worker",
+	"hostname": "worker",
+	"essential": false
+  },
+  {
+	"name": "nginx",
+	"image": "laposmokus/multi-nginx",
+	"hostname": "nginx",
+	"essential": true,
+	"portMappings": [
+	 {
+	  "hostPort": 80,
+	  "containerPort": 80
+	 }
+	],
+	"links": [
+		"client",
+		"server"
+	]
+  }
+ ]
+}

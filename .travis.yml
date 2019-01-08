@@ -18,3 +18,16 @@ after_success:
   - docker push laposmokus/multi-nginx
   - docker push laposmokus/multi-server
   - docker push laposmokus/multi-worker
+  
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-732391363307"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
