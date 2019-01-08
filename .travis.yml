@@ -7,8 +7,8 @@ before_install:
 
 script:
  - docker run laposmokus/multi-docker npm run test -- --coverage
-
-after_success
+ 
+after_success:
   - docker build -t laposmokus/multi-client ./client
   - docker build -t laposmokus/multi-nginx ./nginx
   - docker build -t laposmokus/multi-server ./server
