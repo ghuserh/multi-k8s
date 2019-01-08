@@ -1,20 +1,20 @@
 sudo: required
 services:
   - docker
-  
+
 before_install:
- - docker build -t laposmokus/multi-docker -f ./client/Dockerfile.dev ./client
- 
+  - docker build -t laposmokus/multi-docker -f ./client/Dockerfile.dev ./client
+
 script:
  - docker run laposmokus/multi-docker npm run test -- --coverage
- 
+
 after_success
- - docker build -t laposmokus/multi-client ./client
- - docker build -t laposmokus/multi-nginx ./nginx
- - docker build -t laposmokus/multi-server ./server
- - docker build -t laposmokus/multi-worker ./worker
- - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
- - docker push laposmokus/multi-client
- - docker push laposmokus/multi-nginx
- - docker push laposmokus/multi-server
- - docker push laposmokus/multi-worker
+  - docker build -t laposmokus/multi-client ./client
+  - docker build -t laposmokus/multi-nginx ./nginx
+  - docker build -t laposmokus/multi-server ./server
+  - docker build -t laposmokus/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push laposmokus/multi-client
+  - docker push laposmokus/multi-nginx
+  - docker push laposmokus/multi-server
+  - docker push laposmokus/multi-worker
