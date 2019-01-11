@@ -1,0 +1,11 @@
+minikube start
+minikube status
+minikube delete
+
+minikube dashboard
+
+kubectl cluster-info
+kubectl apply -f k8s
+kubectl get pods
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=postgres
+kubectl get secrets
